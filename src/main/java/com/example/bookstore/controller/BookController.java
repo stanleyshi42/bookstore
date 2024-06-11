@@ -30,7 +30,7 @@ public class BookController {
         Book result = service.getBookById(id);
         if (result == null)
             return ResponseEntity.status(404).body("Book not found");
-        return ResponseEntity.status(200).body(result);
+        return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/books/title/{title}")
@@ -40,6 +40,9 @@ public class BookController {
 
     @PostMapping("/books")
     public Book addBook(@RequestBody Book book) {
+
+        // Prevent overwriting a book with same ID
+        book.setId(0);
 
         // Check if book with given title already exists
         Book result = service.getBookByTitle(book.getTitle());

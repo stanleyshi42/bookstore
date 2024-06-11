@@ -9,9 +9,22 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
+
+    @Column(unique = true)
     public String title;
+
     public String author;
     public int quantity;
+
+    public Book() {
+    }
+
+    public Book(long id, String title, String author, int quantity) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.quantity = quantity;
+    }
 
     public long getId() {
         return id;
